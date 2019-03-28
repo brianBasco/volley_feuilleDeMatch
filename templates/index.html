@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% block titre_head %}
+    <title>defaut</title>
+    {% endblock %}
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+
+</head>
+
+<body>
+    {% block page_content %} {% endblock %}
+    
+    <script src="{{ url_for('static', filename='jquery/jquery.js') }}"></script>    
+    <script src="{{ url_for('static', filename='popperjs/popper.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
+    <!--
+    <script src="{{ url_for('static', filename='js/canvas.js') }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/draw.js') }}"></script>
+    -->
+    <script src="{{ url_for('static', filename='js/scores.js') }}"></script>
+</body>
+</html>

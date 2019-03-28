@@ -1,0 +1,89 @@
+<div class="container-fluid recap">
+
+<h1>NOMS ET SIGNATURES DEBUT MATCH</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        {% for capitaine in capitaines %}
+        <div class="col-6 noms">    
+            <label>{{ capitaine }}</label>
+            <input type="text" placeholder="nom" />    
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        {% for entraineur in entraineurs %}
+        <div class="col-6 noms">
+            <label>{{ entraineur }}</label>
+            <input type="text" placeholder="nom" />
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-lg-6 resultats">
+            <!-- <table id="scores" class="scores">
+                <tr>
+                    <th>Résultats</th>
+                    <th>EQUIPE A</th>
+                    <th>EQUIPE B</th>
+                </tr>
+                {% for i in range(5) %}
+                <tr>
+                    <td>{{ 'Set {}'.format(i+1) }}</td>
+                    <td><input type="number" class="equipeA" name="{{ 'set{}A'.format(i+1) }}" value=0 /></td>
+                    <td><input type="number" class="equipeB" name="{{ 'set{}B'.format(i+1) }}" value=0 /></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>TOTAUX</td>
+                    <td id="totalA"></td>
+                    <td id="totalB"></td>
+                </tr>
+            </table> -->
+            <table id="scores" class="table scores">
+                    <thead>
+                            <tr>
+                              <th scope="col">Résultats</th>
+                              <th scope="col">Equipe A</th>
+                              <th scope="col">Equipe B</th>
+                              
+                            </tr>
+                          </thead>
+                <tbody>
+                    {% for i in range(5) %}
+                    <tr>
+                        <th scope="row">{{ 'Set {}'.format(i+1) }}</th>
+                        <td><input type="number" class="scoreA" name="{{ 'set{}A'.format(i+1) }}" placeholder="0" /></td>
+                        <td><input type="number" class="scoreB" name="{{ 'set{}B'.format(i+1) }}" placeholder="0" /></td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th scope="row">Totaux</th>
+                        <td id="totalA"></td>
+                        <td id="totalB"></td>
+                    </tr>
+                </tbody>
+                </table>
+        </div>
+
+        <div class="col-sm-12 col-lg-6 signatures">
+            <h1>Signatures</h1>
+            <label for="arbitre">Arbitre</label> <input type="text" placeholder="signature arbitre">
+            <label for="capitaineA">Capitaine A : </label> <input type="text" placeholder="capitaine A">
+            <label for="capitaineB">Capîtaine B : </label> <input type="text" placeholder="capitaine B">
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p>RESULTATS FINAL = 3 SETS A   POUR : </p> <input type="text" placeholder="equipe">
+</div>
+
+
+</div>

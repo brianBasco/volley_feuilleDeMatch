@@ -1,0 +1,61 @@
+#canvas_test {
+    border: 1px solid grey ;
+}
+
+
+.recap {
+    border: 1px solid grey;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.recap h1 {
+    text-align: center;
+}
+
+.recap table {
+    
+    border: 1px solid grey;
+}
+
+.recap .scores input {
+    width: 60px;
+}
+
+.recap th, .recap td {
+    text-align: center;
+    border: 1px solid grey;
+}
+
+.recap .signatures label {
+    width: 200px;
+}
+
+.recap .signatures input {
+    width: 100%;
+}
+
+.recap .noms label {
+    width: 200px;
+}
+
+.recap .noms input {
+    width: 100%;
+}
+
+.listeDeJoueurs .numero {
+    width: 35px;
+    text-align: center;
+}
+
+.listeDeJoueurs .nom {
+    width: 50%;
+}
+
+.listeDeJoueurs .licence {
+    width: 100px;
+}
+
+.listeDeJoueurs h1 {
+	font-size: 1.5rem;
+}

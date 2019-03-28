@@ -1,0 +1,64 @@
+    {% extends 'index.html' %}
+    
+    {% block page_content %}
+    <header>
+
+            {% if name %}
+            <h1>Hello {{ name }}!</h1>
+          {% else %}
+            <h1>Hello, World!</h1>
+          {% endif %}
+
+
+        <div id="container">
+            <h1>Comité de Gironde volley-ball</h1>
+            <h2>Challenge OPEN 2018-2019</h2>
+        </div>
+
+        <div class="container">
+            <div class="adresse">
+                <button class="btn btn-danger">OK</button>
+                <p>
+                    153 rue David Johnston - 33000 BORDEAUX
+                </p>
+                <p>
+                    Tél: 05 56 52 83 12
+                </p>
+                <p>
+                    mél: contact@volley-girond 
+                </p>
+                <div class="logo">
+                    logo
+                </div>  
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid listeDeJoueurs">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <div id="nomsA" class="container nomsA">
+                    <div class="row">
+                        <h1>Equipe(recevante) A</h1>
+                        <input type="text" placeholder="equipe"/>
+                    </div>
+                    {% include 'partials/listeDeJoueurs.html' %}
+                </div>
+            </div>    
+    
+            <div class="col-sm-12 col-lg-6">
+                <div id="nomsB" class="container nomsB">
+                    <div class="row">
+                        <h1>Equipe(visiteuse) B</h1>
+                        <input type="text" placeholder="equipe" />
+                    </div>
+                    {% include 'partials/listeDeJoueurs.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/recap.html' %}
+   
+    
+    {% endblock %}

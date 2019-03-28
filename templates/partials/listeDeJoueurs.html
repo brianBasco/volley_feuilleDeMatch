@@ -1,0 +1,19 @@
+
+        <!-- Liste de 12 joueurs -->
+        {% for i in range(0,12) %}
+            <div class="row">
+                <input type="text" class="numero" value="{{ i+1 }}" readonly />
+                <input type="text" class="nom" placeholder="joueur nom" />
+                <input type="number" class="licence" placeholder="No licence" />
+                <button class="suppr" data-suppr="{{ i }}">X</button>
+            </div>
+        {% endfor %}
+
+        <div class="row">
+            <input type="text" class="numero"/>
+            <input type="text" class="libero" placeholder="Libéro" />
+            <input type="text" class="licence" placeholder="No licence" />
+        </div>
+
+        <button onclick="insererNoms()">Trier</button>
+    
