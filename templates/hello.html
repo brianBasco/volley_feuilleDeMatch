@@ -37,20 +37,20 @@
     <div class="container-fluid listeDeJoueurs">
         <div class="row">
             <div class="col-sm-12 col-lg-6">
-                <div id="nomsA" class="container nomsA">
+                <div id="nomsA" class="container noms">
                     <div class="row">
                         <h1>Equipe(recevante) A</h1>
-                        <input type="text" placeholder="equipe"/>
+                        <input id="nomA" type="text" placeholder="equipe"/>
                     </div>
                     {% include 'partials/listeDeJoueurs.html' %}
                 </div>
             </div>    
     
             <div class="col-sm-12 col-lg-6">
-                <div id="nomsB" class="container nomsB">
+                <div id="nomsB" class="container noms">
                     <div class="row">
                         <h1>Equipe(visiteuse) B</h1>
-                        <input type="text" placeholder="equipe" />
+                        <input id="nomB" type="text" placeholder="equipe" />
                     </div>
                     {% include 'partials/listeDeJoueurs.html' %}
                 </div>

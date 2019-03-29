@@ -1,3 +1,62 @@
+// Prog orientée Objet :///////////////////////////////////::
+var Equipe = function(nbre){
+
+    //attributs :
+    this.equipe;
+    this.nbre = nbre;
+    this.joueurs = [];
+    this.nom = "";
+    
+    this.initJoueurs = function() {
+            for (let i = 0; i < this.nbre; i++) {
+                let joueur = new Joueur("", "");
+                this.joueurs.push(joueur);
+            }
+        };
+        
+    this.setNomJoueur = function(blur) {
+            let index = blur.target.index;
+            this.joueurs[index].nom = blur.target.value;
+            console.log(this.joueurs[index]);
+        };
+
+    this.setNom = function(input) {
+            this.nom = input.target.value;
+            console.log("setNom = " + this.nom);
+        };
+    
+    this.setLicence = function(blur) {
+        let index = blur.target.index;
+        this.joueurs[index].licence = blur.target.value;
+        console.log(this.joueurs[index]);
+    }
+
+    this.supprJoueur = function(click) {
+        let index = click.target.index;
+        let joueur = this.joueurs[index];
+        joueur.licence = "";
+        joueur.nom = "";
+        
+        //affichage dans le DOM
+        this.render(joueur, index);
+    }
+
+    this.render = function(joueur, index) {
+        let joueurs = document.getElementsByClassName("noms")[this.equipe];
+        joueurs.getElementsByClassName("nom")[index].value = joueur.nom;
+        joueurs.getElementsByClassName("licence")[index].value = joueur.licence;
+    }
+    //implémenter fonctions trier, suppr
+}
+
+
+class Joueur {
+    constructor(nom, licence) {
+        this.nom = nom;
+        this.licence = licence;
+    }
+}
+
 equipeTalence = {
     joueurs : []
 };
@@ -20,11 +79,53 @@ JoueursTalence.forEach(joueur => {
     equipeTalence.joueurs.push(JoueurTalence);
 });
 
-
+var equipes;
 
 
 window.addEventListener("load", function(event) {
     console.log("loaded");
+
+    equipes = [new Equipe(12), new Equipe(12)];
+
+    equipes.forEach(function(equipe, index) {
+        equipe.equipe = index;
+        equipe.initJoueurs();
+        console.log("joueurs initialisés");
+        equipe.nom = "equipe" + index;
+    });
+
+    let noms = document.getElementsByClassName("noms");
+
+    //CORRIGER DANS LE dOM pour visiblité, mettre class joueurs à la place de noms
+    //Events Listener por les inputs de noms
+    for(let i = 0; i<noms.length; i++) {
+        let nom = noms[i].getElementsByClassName("nom");
+            for(let j = 0; j<nom.length; j++) {
+                nom[j].index = j;
+                nom[j].addEventListener("blur", equipes[i].setNomJoueur.bind(equipes[i]));
+            }
+    }
+
+    //Events Listener por les inputs des numéros de licence
+     //Events Listener por les boutons supprimmer
+    for(let i = 0; i<noms.length; i++) {
+        let licences = noms[i].getElementsByClassName("licence");
+        let btns = noms[i].getElementsByClassName("suppr");
+            for(let j = 0; j<licences.length; j++) {                
+                licences[j].index = j;
+                btns[j].index = j;
+                licences[j].addEventListener("blur", equipes[i].setLicence.bind(equipes[i]));
+                btns[j].addEventListener("click", equipes[i].supprJoueur.bind(equipes[i]));
+            }
+    }
+
+    document.getElementById("nomA").addEventListener("blur", equipes[0].setNom.bind(equipes[0]));
+    document.getElementById("nomB").addEventListener("blur", equipes[1].setNom.bind(equipes[1]));
+
+    //essais de binding avec boutons suppr
+    //fin POO ------------------------
+
+    /*  Prog Imperative
     calculerTotaux();
 
     let inputs = document.getElementById("scores").getElementsByTagName("input");
@@ -44,8 +145,11 @@ window.addEventListener("load", function(event) {
 
     //PréRemplissage de notre équipe
     preRemplissage("A");
+    //Fin prog imérative
+    */
 })
 
+/*
 function calculerTotaux() {
     let tab = ["A", "B"];
   
@@ -160,3 +264,7 @@ function preRemplissage(lettre) {
         
     }
 }
+
+*/
+
+  
