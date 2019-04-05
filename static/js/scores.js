@@ -42,11 +42,70 @@ var Equipe = function(nbre){
     }
 
     this.render = function(joueur, index) {
+        //this.equipe est soit 0 ou 1
         let joueurs = document.getElementsByClassName("noms")[this.equipe];
         joueurs.getElementsByClassName("nom")[index].value = joueur.nom;
         joueurs.getElementsByClassName("licence")[index].value = joueur.licence;
     }
-    //implémenter fonctions trier, suppr
+    //implémenter fonctions trier
+    this.trier = function() {
+        let triParNom = this.joueurs.slice(0);
+        triParNom.sort(function(a,b) {         
+
+        let x = a.nom.toLowerCase();
+        var y = b.nom.toLowerCase();
+        return x < y ? -1 : x > y ? 1 : 0;
+        });
+
+    //Les joueurs vides {"", ""} ont été triés et mis au début
+    //il faut les mettre à la fin s'il y en a    
+    this.queueJoueursVides(triParNom);   
+   
+    console.log(this.joueurs);
+    //render: joueurs est mis à jour, il suffit remettre à jour le front
+    this.renderAll();
+    }
+
+    this.preRemplir = function() {
+        //remplissage des 12 cases pour écraser les anciennes
+        for(let i = 0; i< this.joueurs.length; i++) {
+            let joueur = this.joueurs[i];
+
+            //Il se peut que le tableau externe de joueurs donné
+            //soit inférieur à 12 
+            if(equipeTalence.joueurs[i] != undefined) {
+                joueur.nom = equipeTalence.joueurs[i].nom;
+                joueur.licence = equipeTalence.joueurs[i].licence;
+            }
+            else {
+                joueur.licence = "";
+                joueur.nom = "";
+            }
+            this.render(joueur, i);
+        }
+    }
+
+    //met à jour le DOM pour les 12 cases
+    this.renderAll = function() {
+        
+        for(let i = 0; i< this.joueurs.length; i++) {
+            let joueur = this.joueurs[i];
+            this.render(joueur, i);
+        }
+    }
+
+    this.queueJoueursVides = function(tableauAinverser) {
+        let decalage = 0;
+        //il faut compter le décalage de joueurs {"", ""} en début de tableau;
+        while(tableauAinverser[decalage].nom  == "")  decalage++;
+        
+        //remplissage de this.joueurs avec le bon index
+        for(let j = 0; j<this.joueurs.length; j++)
+            {    
+                if(tableauAinverser[j+decalage] != undefined) this.joueurs[j] = tableauAinverser[j+decalage];
+                else this.joueurs[j] = new Joueur("","");
+            }
+    }
 }
 
 
@@ -62,14 +121,16 @@ equipeTalence = {
 };
 
 JoueursTalence = [
-                    ["MEYNARD Stephane", 00000],
-                    ["BAGET Marie", 00000],
-                    ["PINET Seb", 00000],
-                    ["COYOT Benjamin", 00000],
-                    ["VEBER Erci", 00000],
-                    ["DABLEMONT Julien", 0000],
-                    ["DE BAILLANCOURT Ségolène", 0000],
-                    ["DUMONT Jérémy", 0000],
+                    ["MEYNARD Stéphane","1573440"],
+                    ["BAGET Marie",1414916],
+                    ["PINET Sébastien",2153510],
+                    ["COYO Benjamin",2152641],
+                    ["VEBER Eric",1795980],
+                    ["DABLEMONT Julien",1760449],
+                    ["LEROY Ségolène",1607131],
+                    ["DUMONT Jérémy",2256069],
+                    ["ODIARD Sylvain",1815640],
+                    ["ROQUES Pierre",1773342]
                 ]
 //boucle
 JoueursTalence.forEach(joueur => {
@@ -118,6 +179,15 @@ window.addEventListener("load", function(event) {
                 btns[j].addEventListener("click", equipes[i].supprJoueur.bind(equipes[i]));
             }
     }
+
+    //Events listener sur les boutons trier de chaque équipe
+    let btn_trier = document.getElementsByClassName("btn_trier");
+    let btn_remplir = document.getElementsByClassName("btn_remplir");
+    for(let i = 0; i< btn_trier.length; i++) {
+        btn_trier[i].addEventListener("click", equipes[i].trier.bind(equipes[i]));
+        btn_remplir[i].addEventListener("click", equipes[i].preRemplir.bind(equipes[i]));
+    }
+
 
     document.getElementById("nomA").addEventListener("blur", equipes[0].setNom.bind(equipes[0]));
     document.getElementById("nomB").addEventListener("blur", equipes[1].setNom.bind(equipes[1]));
